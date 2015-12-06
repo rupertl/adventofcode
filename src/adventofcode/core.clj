@@ -1,7 +1,8 @@
 (ns adventofcode.core
   (:require [adventofcode.day01 :refer :all]
             [adventofcode.day02 :refer :all]
-            [adventofcode.day03 :refer :all])
+            [adventofcode.day03 :refer :all]
+            [adventofcode.day04 :refer :all])
   (:gen-class))
 
 ;; Load the test inputs as input-01, input-02 etc
@@ -15,6 +16,7 @@
   (println "Day  1 Part 2: " (basement-instruction input-01))
   (println "Day  2 Part 1: " (total-paper-required input-02))
   (println "Day  2 Part 2: " (total-ribbon-required input-02))
-  (println "Day  3 Part 1: " (num-houses-deliverd input-3))
-  (println "Day  3 Part 2: " (num-houses-deliverd-2 input-3))
-  )
+  (println "Day  3 Part 1: " (num-houses-deliverd input-03))
+  (println "Day  3 Part 2: " (num-houses-deliverd-2 input-03))
+  (println "Day  4 Part 1: " (first-adventcoin input-04))
+  (println "Day  4 Part 2: " (first-adventcoin-n input-04 6)))
