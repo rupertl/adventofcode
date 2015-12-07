@@ -4,7 +4,8 @@
             [adventofcode.day03 :refer :all]
             [adventofcode.day04 :refer :all]
             [adventofcode.day05 :refer :all]
-            [adventofcode.day06 :refer :all])
+            [adventofcode.day06 :refer :all]
+            [adventofcode.day07 :refer :all])
   (:gen-class))
 
 ;; Load the test inputs as input-01, input-02 etc
@@ -25,4 +26,6 @@
   (println "Day  5 Part 1: " (count-nice naughty-or-nice input-05))
   (println "Day  5 Part 2: " (count-nice naughty-or-nice-2 input-05))
   (println "Day  6 Part 1: " (house-lights-lit input-06))
-  (println "Day  6 Part 2: " (house-lights-lit-2 input-06)))
+  (println "Day  6 Part 2: " (house-lights-lit-2 input-06))
+  (println "Day  7 Part 1: " (wire-value input-07 :a))
+  (println "Day  7 Part 2: " (override-wire-b input-07 :a)))
