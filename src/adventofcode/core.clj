@@ -7,7 +7,8 @@
             [adventofcode.day06 :refer :all]
             [adventofcode.day07 :refer :all]
             [adventofcode.day08 :refer :all]
-            [adventofcode.day09 :refer :all])
+            [adventofcode.day09 :refer :all]
+            [adventofcode.day10 :refer :all])
   (:gen-class))
 
 ;; Load the test inputs as input-01, input-02 etc
@@ -34,4 +35,6 @@
   (println "Day  8 Part 1: " (total-code-memory-difference input-08))
   (println "Day  8 Part 2: " (total-encoded-code-difference input-08))
   (println "Day  9 Part 1: " (min-trip-distance input-09))
-  (println "Day  9 Part 2: " (max-trip-distance input-09)))
+  (println "Day  9 Part 2: " (max-trip-distance input-09))
+  (println "Day 10 Part 1: " (length-n-look-and-say input-10 40))
+  (println "Day 10 Part 2: " (length-n-look-and-say input-10 50)))

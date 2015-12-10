@@ -2995,3 +2995,5 @@
    #{:Snowdin :Straylight} 99
    #{:Tambi :Straylight} 70
    })
+
+(def input-10 [1 1 1 3 1 2 2 1 1 3])
