@@ -10,7 +10,8 @@
             [adventofcode.day09 :refer :all]
             [adventofcode.day10 :refer :all]
             [adventofcode.day11 :refer :all]
-            [adventofcode.day12 :refer :all])
+            [adventofcode.day12 :refer :all]
+            [adventofcode.day13 :refer :all])
   (:gen-class))
 
 ;; Load the test inputs as input-01, input-02 etc
@@ -43,4 +44,6 @@
   (println "Day 11 Part 1: " (next-valid-password input-11))
   (println "Day 11 Part 1: " (next-valid-password (next-valid-password input-11)))
   (println "Day 12 Part 1: " (accounting-sum input-12))
-  (println "Day 12 Part 2: " (accounting-sum-no-red input-12)))
+  (println "Day 12 Part 2: " (accounting-sum-no-red input-12))
+  (println "Day 13 Part 1: " (best-total-happiness input-13))
+  (println "Day 13 Part 2: " (best-total-happiness (add-me-to-dinner input-13))))
