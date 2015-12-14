@@ -3061,3 +3061,15 @@
    [:Mallory :George] -89
    })
 
+(def input-14
+  [
+   {:name :Vixen :speed 19 :fly-time 7 :rest-time 124}
+   {:name :Rudolph :speed 3 :fly-time 15 :rest-time 28}
+   {:name :Donner :speed 19 :fly-time 9 :rest-time 164}
+   {:name :Blitzen :speed 19 :fly-time 9 :rest-time 158}
+   {:name :Comet :speed 13 :fly-time 7 :rest-time 82}
+   {:name :Cupid :speed 25 :fly-time 6 :rest-time 145}
+   {:name :Dasher :speed 14 :fly-time 3 :rest-time 38}
+   {:name :Dancer :speed 3 :fly-time 16 :rest-time 37}
+   {:name :Prancer :speed 25 :fly-time 6 :rest-time 143}
+   ])
