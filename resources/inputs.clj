@@ -3073,3 +3073,11 @@
    {:name :Dancer :speed 3 :fly-time 16 :rest-time 37}
    {:name :Prancer :speed 25 :fly-time 6 :rest-time 143}
    ])
+
+(def input-15
+  {
+   :Frosting {:capacity 4, :durability -2, :flavor 0, :texture 0, :calories 5}
+   :Candy {:capacity 0, :durability 5, :flavor -1, :texture 0, :calories 8}
+   :Butterscotch {:capacity -1, :durability 0, :flavor 5, :texture 0, :calories 6}
+   :Sugar {:capacity 0, :durability 0, :flavor -2, :texture 2, :calories 1}
+ })
