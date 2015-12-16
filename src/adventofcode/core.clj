@@ -13,7 +13,8 @@
             [adventofcode.day12 :refer :all]
             [adventofcode.day13 :refer :all]
             [adventofcode.day14 :refer :all]
-            [adventofcode.day15 :refer :all])
+            [adventofcode.day15 :refer :all]
+            [adventofcode.day16 :refer :all])
   (:gen-class))
 
 ;; Load the test inputs as input-01, input-02 etc
@@ -52,4 +53,6 @@
   (println "Day 14 Part 1: " (max-reindeer-distance input-14 2503))
   (println "Day 14 Part 2: " (max-reindeer-score input-14 2503))
   (println "Day 15 Part 1: " (max-cookie-score input-15))
-  (println "Day 15 Part 2: " (max-cookie-score-500-cals input-15)))
+  (println "Day 15 Part 2: " (max-cookie-score-500-cals input-15))
+  (println "Day 16 Part 1: " (which-sue-matches-1 input-16 input-16-sue-facts))
+  (println "Day 16 Part 2: " (which-sue-matches-2 input-16 input-16-sue-facts)))
