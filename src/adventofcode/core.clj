@@ -14,7 +14,8 @@
             [adventofcode.day13 :refer :all]
             [adventofcode.day14 :refer :all]
             [adventofcode.day15 :refer :all]
-            [adventofcode.day16 :refer :all])
+            [adventofcode.day16 :refer :all]
+            [adventofcode.day17 :refer :all])
   (:gen-class))
 
 ;; Load the test inputs as input-01, input-02 etc
@@ -55,4 +56,6 @@
   (println "Day 15 Part 1: " (max-cookie-score input-15))
   (println "Day 15 Part 2: " (max-cookie-score-500-cals input-15))
   (println "Day 16 Part 1: " (which-sue-matches-1 input-16 input-16-sue-facts))
-  (println "Day 16 Part 2: " (which-sue-matches-2 input-16 input-16-sue-facts)))
+  (println "Day 16 Part 2: " (which-sue-matches-2 input-16 input-16-sue-facts))
+  (println "Day 17 Part 1: " (how-many-eggnog-containers input-17 150))
+  (println "Day 17 Part 2: " (how-many-min-eggnog-containers input-17 150)))
