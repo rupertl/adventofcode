@@ -15,7 +15,8 @@
             [adventofcode.day14 :refer :all]
             [adventofcode.day15 :refer :all]
             [adventofcode.day16 :refer :all]
-            [adventofcode.day17 :refer :all])
+            [adventofcode.day17 :refer :all]
+            [adventofcode.day18 :refer :all])
   (:gen-class))
 
 ;; Load the test inputs as input-01, input-02 etc
@@ -58,4 +59,6 @@
   (println "Day 16 Part 1: " (which-sue-matches-1 input-16 input-16-sue-facts))
   (println "Day 16 Part 2: " (which-sue-matches-2 input-16 input-16-sue-facts))
   (println "Day 17 Part 1: " (how-many-eggnog-containers input-17 150))
-  (println "Day 17 Part 2: " (how-many-min-eggnog-containers input-17 150)))
+  (println "Day 17 Part 2: " (how-many-min-eggnog-containers input-17 150))
+  (println "Day 18 Part 1: " (count-lights-after-steps input-18 100))
+  (println "Day 18 Part 2: " (count-lights-after-steps-2 input-18 100)))
