@@ -16,7 +16,8 @@
             [adventofcode.day15 :refer :all]
             [adventofcode.day16 :refer :all]
             [adventofcode.day17 :refer :all]
-            [adventofcode.day18 :refer :all])
+            [adventofcode.day18 :refer :all]
+            [adventofcode.day19 :refer :all])
   (:gen-class))
 
 ;; Load the test inputs as input-01, input-02 etc
@@ -61,4 +62,6 @@
   (println "Day 17 Part 1: " (how-many-eggnog-containers input-17 150))
   (println "Day 17 Part 2: " (how-many-min-eggnog-containers input-17 150))
   (println "Day 18 Part 1: " (count-lights-after-steps input-18 100))
-  (println "Day 18 Part 2: " (count-lights-after-steps-2 input-18 100)))
+  (println "Day 18 Part 2: " (count-lights-after-steps-2 input-18 100))
+  (println "Day 19 Part 1: " (calibrate-rnrffm-count input-19))
+  (println "Day 19 Part 2: " (defabricate-steps input-19)))
