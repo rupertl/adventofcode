@@ -2,7 +2,6 @@
   (:require [clojure.math.combinatorics :as combo])
   (:gen-class))
 
-
 ;; Day 21: RPG Simulator 20XX
 
 ;; Little Henry Case got a new video game for Christmas. It's an RPG,
@@ -78,8 +77,8 @@
 
 (defn player-wins-fight? [boss player]
   (let [b (fight-turn player boss) p (fight-turn boss player)]
-    (cond (character-dead? boss) true
-          (character-dead? player) false
+    (cond (character-dead? b) true
+          (character-dead? p) false
           :else (player-wins-fight? b p))))
 
 ;; Define the shop, using a similar map to characters.
@@ -130,7 +129,7 @@
                               [:cost :damage :armour])))
 
 ;; Try fighting the boss with all combinations of players and
-;; purchases to find the winndrs.
+;; purchases to find the winners.
 (defn winning-players [boss]
   (filter (partial player-wins-fight? boss)
           (map (partial equip-player player-start) (shopping-combos))))
