@@ -19,7 +19,8 @@
             [adventofcode.day18 :refer :all]
             [adventofcode.day19 :refer :all]
             [adventofcode.day20 :refer :all]
-            [adventofcode.day21 :refer :all])
+            [adventofcode.day21 :refer :all]
+            [adventofcode.day22 :refer :all])
   (:gen-class))
 
 ;; Load the test inputs as input-01, input-02 etc

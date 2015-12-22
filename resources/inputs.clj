@@ -3760,3 +3760,5 @@
 (def input-20 34000000)
 
 (def input-21 {:hp 109 :damage 8 :armour 2})
+
+(def input-22 {:hp 55 :damage 8 :armour 0})
