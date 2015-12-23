@@ -71,4 +71,6 @@
   (println "Day 20 Part 1: " (first-house-presents input-20))
   (println "Day 20 Part 2: " (first-house-presents-2 input-20))
   (println "Day 21 Part 1: " (min-cost-winning input-21))
-  (println "Day 21 Part 2: " (max-cost-losing input-21)))
+  (println "Day 21 Part 2: " (max-cost-losing input-21))
+  (println "Day 22 Part 1: " (min-mana-spent-win input-22 100000))
+  (println "Day 22 Part 2: " (hard-min-mana-spent-win input-22 1000000)))

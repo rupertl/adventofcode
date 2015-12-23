@@ -104,8 +104,8 @@
    :mana-spent 0})
 
 (deftest test-wiz-1
-  (is (player-wins-wiz-fight? (test-start-wizsim-1)
-                              [:poison :magic-missile])))
+  (is (= (+ 173 53) (player-wins-fight-cost (test-start-wizsim-1)
+                                            [:poison :magic-missile]))))
 
 
 (defn test-start-wizsim-2 []
@@ -115,8 +115,10 @@
    :mana-spent 0})
 
 (deftest test-wiz-2
-  (is (player-wins-wiz-fight? (test-start-wizsim-2)
-                              [:recharge :shield :drain :poison :magic-missile])))
+  (is (= (+ 229 113 73 173 53)
+         (player-wins-fight-cost (test-start-wizsim-2)
+                                 [:recharge :shield :drain
+                                  :poison :magic-missile]))))
 
 (defn test-start-wizsim-3 []
   {:player {:hp 10 :damage 0 :armour 0 :mana 250}
@@ -125,6 +127,6 @@
    :mana-spent 0})
 
 (deftest test-wiz-3
-  (is (not (player-wins-wiz-fight? (test-start-wizsim-3)
+  (is (not (player-wins-fight-cost (test-start-wizsim-3)
                                    [:recharge :shield :drain
                                     :poison :magic-missile]))))

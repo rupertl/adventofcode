@@ -57,24 +57,28 @@
 ;; you can spend and still win the fight? (Do not include mana
 ;; recharge effects as "spending" negative mana.)
 
-;; Model characters (players and bosses) with maps.
+
+;; Model the game as a map of characters with spells, mana spent and
+;; mode (for part 2). Spells pending are held in a vector, entry 0
+;; being a list of spell functions to run for that turn.
 
 (def wizard-start {:hp 50 :damage 0 :armour 0 :mana 500})
-
-(def wizsim-min-damage {:boss 1 :player 0})
 
 (defn start-wizsim [boss]
   {:player wizard-start
    :boss boss
    :spells []
-   :mana-spent 0})
+   :mana-spent 0
+   :mode :easy})
 
-(defn nomagic-fight-turn [game attacker defender]
-  (update-in game [defender :hp]
-             (fn [hp a d]
-               (- hp (max (attacker wizsim-min-damage)
-                          (- (:damage a) (:armour d)))))
-             (attacker game) (defender game)))
+;; Boss fights are as before
+
+(defn boss-fight-turn [game]
+  (update-in game [:player :hp]
+             (fn [hp a d] (- hp (max 1 (- (:damage a) (:armour d)))))
+             (:boss game) (:player game)))
+
+;; Model the effect of each spell
 
 (defn spell-magic-missile [game]
   (update-in game [:boss :hp] #(- % 4)))
@@ -95,6 +99,8 @@
 (defn spell-recharge [game]
   (update-in game [:player :mana] #(+ % 101)))
 
+;; Add a spell function for some turns
+
 (defn add-spell-turn [game spell turn]
   (update-in game [:spells turn] #(conj % spell)))
 
@@ -105,6 +111,8 @@
 
 (defn add-spell-turns [game spell r]
   (reduce #(add-spell-turn %1 spell %2) game r))
+
+;; Define spell costs and durations
 
 (def spells
   {:magic-missile {:action spell-magic-missile :duration (list 0) :cost 53}
@@ -123,6 +131,8 @@
         (add-spell-turns (:action s) (:duration s))
         (add-spell-finally (:final s) (:final-turn s)))))
 
+;; The player is dead if they chose to cast a spell while it is in
+;; effect.
 (defn multiple-castings? [game]
   (some #(> % 1) (vals (frequencies (first (:spells game))))))
 
@@ -140,18 +150,63 @@
 (defn advance-turn [game]
   (update-in game [:spells] (fn [s] (rest s))))
 
-(defn player-wins-wiz-fight? [game spell-list]
-  (let [g1 (apply-spells game)
+(defn damage-player-if-hard [game]
+  (if (= (:mode game) :hard)
+    (update-in game [:player :hp] #(- % 1))
+    game))
+
+;; Return the cost if player won the fight, else false.
+
+(defn player-wins-fight-cost [game spell-list]
+  (let [g0 (damage-player-if-hard game)
+        g1 (apply-spells g0)
         g2 (cast-spell g1 (first spell-list))
         g3 (apply-spells g2)
         g4 (advance-turn g3)
         g5 (apply-spells g4)
-        g6 (nomagic-fight-turn g5 :boss :player)
+        g6 (boss-fight-turn g5)
         g7 (advance-turn g6)]
-    (cond (boss-dead? g1) true
+    (cond (player-dead? g0) false
+          (boss-dead? g1) (:mana-spent g1)
           (player-dead? g2) false
-          (boss-dead? g3) true
-          (boss-dead? g5) true
+          (boss-dead? g3) (:mana-spent g3)
+          (boss-dead? g5) (:mana-spent g5)
           (player-dead? g6) false
-          :else (player-wins-wiz-fight? g7 (rest spell-list))
+          :else (player-wins-fight-cost g7 (rest spell-list))
           )))
+
+;; To find the min cost it looks like we can try a large number of
+;; random spell combinations and just take the min, as most games
+;; finish quickly and we are looking for the shortest route normally.
+
+(defn random-spells []
+  (repeatedly #(rand-nth (keys spells))))
+
+(defn min-mana-spent-win [boss tries]
+  (apply min
+         (filter number?
+                 (repeatedly tries #(player-wins-fight-cost (start-wizsim boss)
+                                                            (random-spells))))))
+
+;; Part Two
+
+;; On the next run through the game, you increase the difficulty to
+;; hard.
+
+;; At the start of each player turn (before any other effects apply),
+;; you lose 1 hit point. If this brings you to or below 0 hit points,
+;; you lose.
+
+;; With the same starting stats for you and the boss, what is the
+;; least amount of mana you can spend and still win the fight?
+
+;; Interestingly this seems to require more tries to get right,
+;; probably because more finish earlier.
+
+(defn hard-min-mana-spent-win [boss tries]
+  (apply min
+         (filter number?
+                 (repeatedly tries
+                             #(player-wins-fight-cost (assoc (start-wizsim boss)
+                                                             :mode :hard)
+                                                      (random-spells))))))
