@@ -21,7 +21,8 @@
             [adventofcode.day20 :refer :all]
             [adventofcode.day21 :refer :all]
             [adventofcode.day22 :refer :all]
-            [adventofcode.day23 :refer :all])
+            [adventofcode.day23 :refer :all]
+            [adventofcode.day24 :refer :all])
   (:gen-class))
 
 ;; Load the test inputs as input-01, input-02 etc
@@ -76,4 +77,6 @@
   (println "Day 22 Part 1: " (min-mana-spent-win input-22 100000))
   (println "Day 22 Part 2: " (hard-min-mana-spent-win input-22 1000000))
   (println "Day 23 Part 1: " (reg-when-done (start-cpu input-23) :b))
-  (println "Day 23 Part 1: " (reg-when-done-a1 (start-cpu input-23) :b)))
+  (println "Day 23 Part 2: " (reg-when-done-a1 (start-cpu input-23) :b))
+  (println "Day 24 Part 1: " (find-best-qe-smallest-fc-packages input-24 3))
+  (println "Day 24 Part 2: " (find-best-qe-smallest-fc-packages input-24 4)))
