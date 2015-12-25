@@ -22,7 +22,8 @@
             [adventofcode.day21 :refer :all]
             [adventofcode.day22 :refer :all]
             [adventofcode.day23 :refer :all]
-            [adventofcode.day24 :refer :all])
+            [adventofcode.day24 :refer :all]
+            [adventofcode.day25 :refer :all])
   (:gen-class))
 
 ;; Load the test inputs as input-01, input-02 etc
@@ -53,7 +54,7 @@
   (println "Day 10 Part 1: " (length-n-look-and-say input-10 40))
   (println "Day 10 Part 2: " (length-n-look-and-say input-10 50))
   (println "Day 11 Part 1: " (next-valid-password input-11))
-  (println "Day 11 Part 1: " (next-valid-password (next-valid-password input-11)))
+  (println "Day 11 Part 2: " (next-valid-password (next-valid-password input-11)))
   (println "Day 12 Part 1: " (accounting-sum input-12))
   (println "Day 12 Part 2: " (accounting-sum-no-red input-12))
   (println "Day 13 Part 1: " (best-total-happiness input-13))
@@ -79,4 +80,5 @@
   (println "Day 23 Part 1: " (reg-when-done (start-cpu input-23) :b))
   (println "Day 23 Part 2: " (reg-when-done-a1 (start-cpu input-23) :b))
   (println "Day 24 Part 1: " (find-best-qe-smallest-fc-packages input-24 3))
-  (println "Day 24 Part 2: " (find-best-qe-smallest-fc-packages input-24 4)))
+  (println "Day 24 Part 2: " (find-best-qe-smallest-fc-packages input-24 4))
+  (println "Day 25 Part 1: " (apply find-code-rc 20151125 input-25)))
