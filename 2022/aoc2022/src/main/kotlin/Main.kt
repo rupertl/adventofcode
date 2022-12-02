@@ -1,7 +1,7 @@
 import java.io.File
 
 // Map day number to a function that will solve the problem.
-val problems = mapOf(1 to ::day01)
+val problems = mapOf(1 to ::day01, 2 to ::day02)
 
 fun readFile(fileName: String) = File(fileName).readText()
 
