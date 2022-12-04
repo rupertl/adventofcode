@@ -62,8 +62,6 @@
 // Find the item type that appears in both compartments of each
 // rucksack. What is the sum of the priorities of those item types?
 
-// PART 2
-
 fun itemToPriority(item: Char) = when (item) {
     in 'a'..'z' -> item.code - 'a'.code + 1
     in 'A'..'Z' -> item.code - 'A'.code + 27
