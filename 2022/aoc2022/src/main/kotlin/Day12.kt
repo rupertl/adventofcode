@@ -60,13 +60,47 @@ import java.util.Queue
 
 // PART 2
 
+// As you walk up the hill, you suspect that the Elves will want to
+// turn this into a hiking trail. The beginning isn't very scenic,
+// though; perhaps you can find a better starting point.
+
+// To maximize exercise while hiking, the trail should start as low as
+// possible: elevation a. The goal is still the square marked E.
+// However, the trail should still be direct, taking the fewest steps
+// to reach its goal. So, you'll need to find the shortest path from
+// any square at elevation a to the square marked E.
+
+// Again consider the example from above:
+
+// Sabqponm
+// abcryxxl
+// accszExk
+// acctuvwj
+// abdefghi
+
+// Now, there are six choices for starting position (five marked a,
+// plus the square marked S that counts as being at elevation a). If
+// you start at the bottom-left square, you can reach the goal most
+// quickly:
+
+// ...v<<<<
+// ...vv<<^
+// ...v>E^^
+// .>v>>>^^
+// >^>>>>>^
+
+// This path reaches the goal in only 29 steps, the fewest possible.
+
+// What is the fewest steps required to move starting from any square
+// with elevation a to the location that should get the best signal?
+
 data class Point(val row: Int, val col: Int)
 
 class Mountain(lines: List<String>) {
     private val cols = lines[0].length
     private val rows = lines.size
     private val terrain = lines.joinToString(separator = "")
-    private val maxPath = 9999
+    private val maxPath = Int.MAX_VALUE
 
     val start = indexToPoint(terrain.indexOf('S'))
     val end = indexToPoint(terrain.indexOf('E'))
@@ -97,7 +131,7 @@ class Mountain(lines: List<String>) {
 
     fun solve(from: Point = start, to: Point = end): Int {
         val checked = mutableSetOf<Point>()
-        val dist = mutableMapOf<Point,Int>()
+        val dist = mutableMapOf<Point, Int>()
         val work: Queue<Point> = LinkedList()
         work.add(from)
 
@@ -105,35 +139,22 @@ class Mountain(lines: List<String>) {
             val curr = work.remove()
             for (next in validMoves(curr)) {
                 if (!checked.contains(next)) {
-                    if (!dist.contains(curr)) {
-                        dist[curr] = 0
-                    }
-                    dist[next] = dist[curr]!! + 1
+                    dist[next] = dist.getOrDefault(curr, 0) + 1
                     checked.add(next)
                     work.add(next)
                 }
             }
         }
 
-        if (to in dist) {
-            return dist[to]!!
-        }
-        return maxPath
+        return dist.getOrDefault(to, maxPath)
     }
 
-    fun solveScenic(): Int {
-        var shortestPath = maxPath
-        for (index in terrain.indices) {
-            val p = indexToPoint(index)
-            if (at(p) == 'a') {
-                val path = solve(p, end)
-                if (path < shortestPath) {
-                    shortestPath = path
-                }
-            }
-        }
-        return shortestPath
-    }
+    fun solveScenic(): Int =
+        terrain
+            .indices
+            .map { indexToPoint(it) }
+            .filter { at(it) == 'a' }
+            .minOf { solve(it, end) }
 }
 
 fun day12(input: String): String {
