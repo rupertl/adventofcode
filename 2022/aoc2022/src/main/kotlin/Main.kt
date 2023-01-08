@@ -1,13 +1,10 @@
 import java.io.File
 
-// Map day number to a function that will solve the problem.
-val problems = mapOf(1 to ::day01, 2 to ::day02, 3 to ::day03, 4 to ::day04,
-                     5 to ::day05, 6 to ::day06, 7 to ::day07, 8 to ::day08,
-                     9 to ::day09, 10 to ::day10, 11 to ::day11, 12 to ::day12,
-                     13 to ::day13, 14 to ::day14, 15 to ::day15, 16 to ::day16,
-                     17 to ::day17, 18 to ::day18, 19 to ::day19, 20 to ::day20,
-                     21 to ::day21, 22 to ::day22, 23 to ::day23, 24 to ::day24,
-                     25 to ::day25,
+val problems = arrayOf(
+    ::day00, ::day01, ::day02, ::day03, ::day04, ::day05, ::day06,
+    ::day07, ::day08, ::day09, ::day10, ::day11, ::day12, ::day13,
+    ::day14, ::day15, ::day16, ::day17, ::day18, ::day19, ::day20,
+    ::day21, ::day22, ::day23, ::day24, ::day25,
 )
 
 fun readFile(fileName: String) = File(fileName).readText()
@@ -22,12 +19,12 @@ fun usage() {
 // for problems to solve.
 fun getDaysFromArgs(args: Array<String>) : List<Int> {
     if (args.isEmpty()) {
-        // Run all problems
-        return problems.keys.toList()
+        // Run all problems except test day 0
+        return problems.indices.drop(1)
     } else if (args.size == 1 && args[0].toIntOrNull() != null) {
         // Run a single problem if it exists
         val day = args[0].toInt()
-        if (day in problems) {
+        if (day in 0..25) {
             return listOf(day)
         }
     }
@@ -42,7 +39,7 @@ fun main(args: Array<String>) {
     for (day in days) {
         val input = readFile("src/main/resources/day%02d.in".format(day))
         print("Day $day: ")
-        val result = problems[day]?.let { it(input) }
-        println("$result")
+        val result = problems[day](input)
+        println(result)
     }
 }

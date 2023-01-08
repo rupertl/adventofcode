@@ -371,7 +371,7 @@ fun day19(input: String): String {
     val rf1 = RobotFactory(lines)
     val part1 = rf1.sumQualityScores()
 
-    val rf2 = RobotFactory(lines, maxTime = 32)
+    // val rf2 = RobotFactory(lines, maxTime = 32)
     val part2 = "(skipped)" // rf2.findProduct(3)
 
     return "$part1, $part2"
