@@ -207,9 +207,7 @@
 // Fold the map into a cube, then follow the path given in the
 // monkeys' notes. What is the final password?
 
-class Facing {
-    private var heading = 90 // degrees, 0 = north
-
+data class Facing(var heading: Int = 90) { // degrees, 0 = north
     fun turn(direction: String) {
         heading += parseDirection(direction)
         if (heading == 360) {
@@ -252,6 +250,8 @@ enum class Tile {
 }
 
 data class RCPoint(var row: Int, var col: Int)
+
+data class Wrap(val to: RCPoint, val facing: Facing)
 
 class Board(lines: List<String>, val is3D: Boolean = false) {
     private val extent = 250
@@ -314,27 +314,31 @@ class Board(lines: List<String>, val is3D: Boolean = false) {
                 number += ch
             }
         }
+        if (number != "") {
+            m.add(number)
+        }
         return m
     }
 
     fun moveOnce(): Boolean {
-        var newPosition = position.copy()
-        newPosition.col += facing.dx()
-        newPosition.row += facing.dy()
-        if (newPosition.row < 1 || newPosition.col < 1 ||
-            get(newPosition) == Tile.EMPTY
+        var next = Wrap(position.copy(), facing.copy())
+        next.to.col += facing.dx()
+        next.to.row += facing.dy()
+        if (next.to.row < 1 || next.to.col < 1 ||
+            get(next.to) == Tile.EMPTY
         ) {
-            newPosition = if (is3D) wrap3D() else wrap2D()
+            next = if (is3D) wrap3D(next) else wrap2D()
         }
-        if (get(newPosition) == Tile.WALL) {
+        if (get(next.to) == Tile.WALL) {
             // Stop
             return false
         }
-        position = newPosition
+        position = next.to
+        facing = next.facing
         return true
     }
 
-    private fun wrap2D(): RCPoint {
+    private fun wrap2D(): Wrap {
         val newPosition = position.copy()
         var lastPosition = newPosition.copy()
         val dx = facing.dx() * -1
@@ -344,11 +348,111 @@ class Board(lines: List<String>, val is3D: Boolean = false) {
             newPosition.col += dx
             newPosition.row += dy
         }
-        return lastPosition
+        return Wrap(lastPosition, facing.copy())
     }
 
-    private fun wrap3D(): RCPoint {
-        TODO("not done")
+    // So as my 3D geometry is not that great I hardcoded the wrap
+    // transitions, so this will only work for one shape of input.
+
+    // My puzzle shape and transitions:
+
+    // 1        51       101
+    //          +--------+--------+       1
+    //          |  10L   |   10B  |
+    //          |        |        |
+    //          |  2     |  3     |
+    //          |        |        |
+    //          |7L      |5R   8R |
+    //          +--------+--------+        51
+    //          |        |!
+    //          |7T      |
+    //          |   5    |
+    //          |        |
+    //         !|     3B |
+    // +--------+--------+                 101
+    // |  5L    |        |
+    // |        |     3R |
+    // |    7   |   8    |
+    // |2L      |        |
+    // |        |  10R   |
+    // +--------+--------+                 151
+    // |        |!
+    // |2T    8B|
+    // |   10   |
+    // |        |
+    // |   3T   |
+    // +--------+                          201
+
+    private fun wrap3D(next: Wrap): Wrap {
+        val r = (next.to.row - 1) % 50
+        val c = (next.to.col - 1) % 50
+        var w: Wrap? = null
+        var border = "not set"
+        if (next.to.row == 0 && next.to.col in 51..100) {
+            border = "2T - 10L"
+            w = Wrap(RCPoint(151 + c, 1), Facing(90))
+        } else if (next.to.row == 0 && next.to.col in 101..150) {
+            border = "3T - 10B"
+            w = Wrap(RCPoint(200, c + 1), Facing(0))
+        } else if (next.to.col == 50 && next.to.row in 1..50) {
+            border = "2L - 7L"
+            w = Wrap(RCPoint(150 - r, 1), Facing(90))
+        } else if (next.to.col == 0 && next.to.row in 101..150) {
+            border = "7L - 2L"
+            w = Wrap(RCPoint(50 - r, 51), Facing(90))
+        } else if (next.to.col == 0 && next.to.row in 151..200) {
+            border = "10L - 2T"
+            w = Wrap(RCPoint(1, 51 + r), Facing(180))
+        } else if (next.to.col == 50 && next.to.row in 51..100 &&
+            next.facing.heading == 270
+        ) {
+            // Note facing check as we could have come to this point from
+            // either 5L or 7T. There are other cases like these (marked
+            // as ! in the drawing) but the input does not take us there.
+            border = "5L - 7T"
+            w = Wrap(RCPoint(101, r + 1), Facing(180))
+        } else if (next.to.col == 101 && next.to.row in 101..150) {
+            border = "8R - 3R"
+            w = Wrap(RCPoint(50 - r, 150), Facing(270))
+        } else if (next.to.col == 51 && next.to.row in 151..200) {
+            border = "10R - 8B"
+            w = Wrap(RCPoint(150, 51 + r), Facing(0))
+        } else if (next.to.row == 151 && next.to.col in 51..100) {
+            border = "8B - 10R"
+            w = Wrap(RCPoint(151 + c, 50), Facing(270))
+        } else if (next.to.row == 201 && next.to.col in 1..50) {
+            border = "10B - 3T"
+            w = Wrap(RCPoint(1, 101 + c), Facing(180))
+        } else if (next.to.col == 151 && next.to.row in 1..50) {
+            border = "3R - 8R"
+            w = Wrap(RCPoint(150 - r, 100), Facing(270))
+        } else if (next.to.col == 101 && next.to.row in 51..100) {
+            border = "5R - 3B"
+            w = Wrap(RCPoint(50, 101 + r), Facing(0))
+        } else if (next.to.row == 51 && next.to.col in 101..150) {
+            border = "3B - 5R"
+            w = Wrap(RCPoint(51 + c, 100), Facing(270))
+        } else if (next.to.row == 100 && next.to.col in 1..50) {
+            border = "7T - 5L"
+            w = Wrap(RCPoint(51 + c, 51), Facing(90))
+        }
+
+        // Run some checks to ensure we handled the transition
+        // and arrived at a legal place.
+        if (w == null) {
+            throw RuntimeException("Not handled: $next")
+        }
+        if (w.to.row !in 1..200) {
+            throw RuntimeException("Row out of bounds: $border $next -> $w")
+        }
+        if (w.to.col !in 1..150) {
+            throw RuntimeException("Col out of bounds: $border $next -> $w")
+        }
+        if (get(w.to) == Tile.EMPTY) {
+            throw RuntimeException("Moved to empty: $border $next -> $w")
+        }
+
+        return w
     }
 
     fun run(): Int {
@@ -375,7 +479,7 @@ fun day22(input: String): String {
     val lines = input.trimEnd().lines()
 
     val part1 = Board(lines).run()
-    val part2 = "(not done)" // Board(lines, is3D = true).run()
+    val part2 = Board(lines, is3D = true).run()
 
     return "$part1, $part2"
 }
