@@ -7,6 +7,7 @@ val problems = mapOf(1 to ::day01, 2 to ::day02, 3 to ::day03, 4 to ::day04,
                      13 to ::day13, 14 to ::day14, 15 to ::day15, 16 to ::day16,
                      17 to ::day17, 18 to ::day18, 19 to ::day19, 20 to ::day20,
                      21 to ::day21, 22 to ::day22, 23 to ::day23, 24 to ::day24,
+                     25 to ::day25,
 )
 
 fun readFile(fileName: String) = File(fileName).readText()
