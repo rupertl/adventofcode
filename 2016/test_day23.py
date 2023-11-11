@@ -1,7 +1,7 @@
-"""Tests Day 12."""
+"""Tests Day 23."""
 import pytest
 from puzzle_data import PuzzleData
-from day12 import Day12, Assembunny
+from day23 import Day23
 
 
 # pylint: disable=invalid-name,missing-function-docstring
@@ -16,19 +16,7 @@ def change_test_dir(request, monkeypatch):
 
 @pytest.fixture(name="puzzle")
 def fixture_puzzle():
-    return Day12(PuzzleData("data/sample/12"))
-
-
-def test_register_register_copy():
-    a = Assembunny(('cpy 18 d', 'cpy d a'))
-    a.run()
-    assert a.get_register('a') == 18
-
-
-def test_jnz_no_branch():
-    a = Assembunny(('cpy 0 a', 'jnz a 2', 'inc a', 'inc a'))
-    a.run()
-    assert a.get_register('a') == 2
+    return Day23(PuzzleData("data/sample/23"))
 
 
 def test_part1_solurion(puzzle):
