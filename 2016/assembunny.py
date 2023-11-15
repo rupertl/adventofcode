@@ -1,4 +1,4 @@
-"""Assembunny computer used by days 12 and 23/"""
+"""Assembunny computer used by days 12, 23, 25"""
 
 # pylint: disable=invalid-name,too-few-public-methods
 
@@ -15,6 +15,7 @@ class Operator(Enum):
     dec = 3
     jnz = 4
     tgl = 5
+    out = 6
 
 
 Operand = namedtuple('Operand', 'isRegister value')
@@ -29,6 +30,7 @@ OPERATOR_OPERANDS = {
     Operator.dec: 1,
     Operator.jnz: 2,
     Operator.tgl: 1,
+    Operator.out: 1,
 }
 
 
@@ -44,6 +46,7 @@ class Assembunny():
         """Set computer to starting values."""
         self.pc = 0             # program counter
         self.registers = [0] * len(self.register_names)
+        self.output = []
 
     def assemble(self, code):
         """Assemble the given code into instructions to avoid having
@@ -67,8 +70,10 @@ class Assembunny():
             return Operand(isRegister=True, value=reg_index)
         return Operand(isRegister=False, value=int(operand))
 
-    def run(self):
-        """Run the computer until it hits max_pc then stop."""
+    def run(self, outputBreak=None):
+        """Run the computer until it hits max_pc then stop. If
+        outputBreak is ser, return after that number of items has been
+        outputted."""
         while self.pc < self.max_pc:
             ins = self.instructions[self.pc]
             self.pc += 1
@@ -96,6 +101,11 @@ class Assembunny():
                     # -1 as we already added 1 above
                     displacement = self.get_operand_value(ins.op1) - 1
                     self.toggle(self.pc + displacement)
+                case Operator.out:
+                    value = self.get_operand_value(ins.op1)
+                    self.output.append(value)
+                    if outputBreak and len(self.output) >= outputBreak:
+                        return
 
     def get_operand_value(self, operand):
         """Return the value of operand, which can be a register or an
