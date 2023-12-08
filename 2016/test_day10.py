@@ -41,6 +41,6 @@ def test_locate_comparer(puzzle, robot_id, compared):
 
 # Part 1 sample data is not compatible with the question inputs, so we
 # can only run part 2.
-def test_part2_solurion(puzzle):
+def test_part2_solution(puzzle):
     puzzle.calculate_part('b')
     assert puzzle.results['b'] == puzzle.puzzle_data.solution('b')

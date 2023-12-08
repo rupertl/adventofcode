@@ -39,7 +39,7 @@ def test_generate_2_row(row, expected):
     assert tr.rows[row] == expected
 
 
-def test_part1_solurion(puzzle):
+def test_part1_solution(puzzle):
     puzzle.target_rows_a = 10
     puzzle.calculate_part('a')
     assert puzzle.results['a'] == puzzle.puzzle_data.solution('a')

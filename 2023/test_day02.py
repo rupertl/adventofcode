@@ -53,11 +53,11 @@ def test_power(puzzle, index, expected):
     assert puzzle.games[index].power() == expected
 
 
-def test_part1_solurion(puzzle):
+def test_part1_solution(puzzle):
     puzzle.calculate_part('a')
     assert puzzle.results['a'] == puzzle.puzzle_data.solution('a')
 
 
-def test_part2_solurion(puzzle):
+def test_part2_solution(puzzle):
     puzzle.calculate_part('b')
     assert puzzle.results['b'] == puzzle.puzzle_data.solution('b')

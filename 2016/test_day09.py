@@ -44,11 +44,11 @@ def test_v2_length_v2(cmessage, length):
     assert Message(cmessage, 2).length() == length
 
 
-def test_part1_solurion(puzzle):
+def test_part1_solution(puzzle):
     puzzle.calculate_part('a')
     assert puzzle.results['a'] == puzzle.puzzle_data.solution('a')
 
 
-def test_part2_solurion(puzzle):
+def test_part2_solution(puzzle):
     puzzle.calculate_part('b')
     assert puzzle.results['b'] == puzzle.puzzle_data.solution('b')

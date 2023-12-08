@@ -1,4 +1,4 @@
-"""Tests Day 6."""
+"""Tests Day 7."""
 import pytest
 from puzzle_data import PuzzleData
 from day07 import Day07, Hand, HandType
@@ -62,11 +62,11 @@ def test_sorting(puzzle, smaller, larger):
     assert puzzle.game.hands[smaller] < puzzle.game.hands[larger]
 
 
-def test_part1_solurion(puzzle):
+def test_part1_solution(puzzle):
     puzzle.calculate_part('a')
     assert puzzle.results['a'] == puzzle.puzzle_data.solution('a')
 
 
-def test_part2_solurion(puzzle):
+def test_part2_solution(puzzle):
     puzzle.calculate_part('b')
     assert puzzle.results['b'] == puzzle.puzzle_data.solution('b')

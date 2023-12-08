@@ -24,13 +24,13 @@ def test_parse(puzzle):
     assert puzzle.navigator.network['BBB'] == ('AAA', 'ZZZ')
 
 
-def test_part1_solurion(puzzle):
+def test_part1_solution(puzzle):
     puzzle.calculate_part('a')
     assert puzzle.results['a'] == puzzle.puzzle_data.solution('a')
 
 
 # Part 1 sample input is different from part 2, so supply directly
-def test_part2_solurion():
+def test_part2_solution():
     lines = ["LR", "",
              "11A = (11B, XXX)",
              "11B = (XXX, 11Z)",

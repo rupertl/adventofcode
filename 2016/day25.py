@@ -3,7 +3,7 @@
 
 # pylint: disable=invalid-name,too-few-public-methods
 
-from assembunny_25 import Assembunny
+from assembunny import Assembunny
 from puzzle import Puzzle
 
 

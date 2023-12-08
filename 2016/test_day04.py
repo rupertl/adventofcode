@@ -56,7 +56,7 @@ def test_calc_checksum(puzzle, index, expected):
     assert puzzle.rooms[index].calculated_checksum == expected
 
 
-def test_part1_solurion(puzzle):
+def test_part1_solution(puzzle):
     puzzle.calculate_part('a')
     assert puzzle.results['a'] == puzzle.puzzle_data.solution('a')
 

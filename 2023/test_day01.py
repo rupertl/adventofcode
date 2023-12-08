@@ -49,12 +49,12 @@ def test_expand_digits_overlap():
     assert calibration_value(expand_digits('eightwo')) == 82
 
 
-def test_part1_solurion(puzzle):
+def test_part1_solution(puzzle):
     puzzle.calculate_part('a')
     assert puzzle.results['a'] == puzzle.puzzle_data.solution('a')
 
 
 # Sample data does not change results for part b unfortunately
-def test_part2_solurion(puzzle):
+def test_part2_solution(puzzle):
     puzzle.calculate_part('b')
     assert puzzle.results['b'] == puzzle.puzzle_data.solution('b')

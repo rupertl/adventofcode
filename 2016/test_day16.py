@@ -37,7 +37,7 @@ def test_generate_checksum(data, expected):
     assert generate_checksum(data) == expected
 
 
-def test_part1_solurion(puzzle):
+def test_part1_solution(puzzle):
     puzzle.calculate_part('a')
     assert puzzle.results['a'] == puzzle.puzzle_data.solution('a')
 

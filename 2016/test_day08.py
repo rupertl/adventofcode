@@ -41,7 +41,7 @@ def test_rotate_col():
     assert s.display[0][0] == 0 and s.display[4][0] == 1
 
 
-def test_part1_solurion(puzzle):
+def test_part1_solution(puzzle):
     puzzle.calculate_part('a')
     assert puzzle.results['a'] == puzzle.puzzle_data.solution('a')
 
