@@ -4,7 +4,10 @@ Python solutions to [Advent of Code 2023](http://adventofcode.com/2023).
 
 ## Running
 
-The puzzle solutions were written using Python 3.11 and the standard library.
+The puzzle solutions were written using Python 3.11 and uses the
+standard library except:
+
+* Day 24 needs [Z3](https://github.com/Z3Prover/z3)
 
 You will need to provide input data and (if known) solutions to each
 puzzle, as this differs for each user. Create files named `input`,
@@ -17,9 +20,9 @@ line argument to just run one day.
 
 ## Tests
 
-Ensure you have pytest installed on your path and then run `pytest`. A
-couple of long running tests (for brute force solutions) are skipped
-by default.
+Ensure you have pytest installed on your path and then run `pytest`.
+This uses the sample data provided in the puzzle text, which has been
+placed in `data/sample/`.
 
 ## License
 
