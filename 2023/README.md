@@ -4,10 +4,11 @@ Python solutions to [Advent of Code 2023](http://adventofcode.com/2023).
 
 ## Running
 
-The puzzle solutions were written using Python 3.11 and uses the
+The puzzle solutions were written using Python 3.11 and use the
 standard library except:
 
 * Day 24 needs [Z3](https://github.com/Z3Prover/z3)
+* Day 25 needs [networkx](https://networkx.org/)
 
 You will need to provide input data and (if known) solutions to each
 puzzle, as this differs for each user. Create files named `input`,
