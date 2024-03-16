@@ -9,7 +9,7 @@ Solutions to [Advent of Code](http://adventofcode.com/).
 
 ## License
 
-Copyright © 2015-2023 Rupert Lane
+Copyright © 2015-2024 Rupert Lane
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
