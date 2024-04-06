@@ -1,7 +1,10 @@
+#pragma once
+
 #include <string>
 #include <utility>
 #include <vector>
 
+#include "parser.hpp"
 #include "puzzle.hpp"
 #include "puzzle_data.hpp"
 
@@ -21,9 +24,11 @@ class Day06 : public Puzzle {
 public:
     constexpr static auto DAY = 6;
     explicit Day06(PuzzleData puzzleData)
-        : Puzzle(DAY, std::move(puzzleData)) {}
+        : Puzzle(DAY, std::move(puzzleData)),
+          banks_(parse_row<int>(input_string())) {}
 
 private:
+    std::vector<int> banks_;
     auto calculate_a() -> std::string override;
     auto calculate_b() -> std::string override;
 };

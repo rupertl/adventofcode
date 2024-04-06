@@ -1,32 +1,15 @@
 #include <algorithm>
 #include <numeric>
-#include <sstream>
 #include <string>
-#include <utility>
 #include <vector>
 
 #include "day02.hpp"
 
-// Initialize cells from vector of strings containing space-separated
-// numbers.
-Spreadsheet::Spreadsheet(const std::vector<std::string> &lines) {
-    for (const auto &line : lines) {
-        std::vector<int> row;
-        std::stringstream lineParser;
-        lineParser << line;
-        int cell = 0;
-        while (lineParser >> cell) {
-            row.push_back(cell);
-        }
-        cells_.emplace_back(std::move(row));
-    }
-}
-
 // The checksum is the sum of the difference of the max and min value
 // on each row.
-auto Spreadsheet::checksum() -> int {
+auto spreadsheet_checksum(const std::vector<std::vector<int>> &cells) -> int {
     return std::accumulate(
-        cells_.begin(), cells_.end(), 0, [](int total, const auto &row) {
+        cells.begin(), cells.end(), 0, [](int total, const auto &row) {
             const auto [min, max] = std::minmax_element(begin(row), end(row));
             return total + *max - *min;
         });
@@ -48,17 +31,17 @@ auto find_evenly_divisible(const std::vector<int> &row) -> int {
     return 0;
 }
 
-auto Spreadsheet::evenly_divisible_sum() -> int {
-    return std::accumulate(cells_.begin(), cells_.end(), 0,
+auto evenly_divisible_sum(const std::vector<std::vector<int>> &cells) -> int {
+    return std::accumulate(cells.begin(), cells.end(), 0,
                            [](int total, const auto &row) {
                                return total + find_evenly_divisible(row);
                            });
 }
 
 auto Day02::calculate_a() -> std::string {
-    return std::to_string(sheet_.checksum());
+    return std::to_string(spreadsheet_checksum(cells_));
 }
 
 auto Day02::calculate_b() -> std::string {
-    return std::to_string(sheet_.evenly_divisible_sum());
+    return std::to_string(evenly_divisible_sum(cells_));
 }

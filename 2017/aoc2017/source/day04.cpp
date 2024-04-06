@@ -1,21 +1,19 @@
 #include <algorithm>
-#include <sstream>
 #include <string>
 #include <unordered_set>
 #include <vector>
 
 #include "day04.hpp"
+#include "parser.hpp"
 
 auto passphrase_has_no_duplicate_words(const std::string &passphrase,
                                        bool allowAnagrams) -> bool {
     // Parse line to words, add each to a set and return false if we
     // see the same word more than once.
     std::unordered_set<std::string> wordsSeen;
-    std::string word;
-    std::stringstream parser(passphrase);
-    while (parser >> word) {
+    for (auto &word : parse_row<std::string>(passphrase)) {
         if (! allowAnagrams) {
-            // Sort all words to spot anagrams
+            // Sort word to spot anagrams (updating word in place)
             std::sort(word.begin(), word.end());
         }
         if (wordsSeen.find(word) != wordsSeen.end()) {

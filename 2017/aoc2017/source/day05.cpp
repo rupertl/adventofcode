@@ -1,6 +1,4 @@
-#include <algorithm>
 #include <cstddef>
-#include <iterator>
 #include <string>
 #include <vector>
 
@@ -25,19 +23,10 @@ auto find_escape_count(std::vector<int> jumps,  // by value as we modify
     return jumpCount;
 }
 
-auto get_jumps(const std::vector<std::string> &lines) {
-    std::vector<int> jumps;
-    std::transform(lines.cbegin(), lines.cend(), std::back_inserter(jumps),
-                   [](const std::string &line) { return std::stoi(line); });
-    return jumps;
-}
-
 auto Day05::calculate_a() -> std::string {
-    return std::to_string(find_escape_count(get_jumps(input_lines()),
-                                            /*variableOffsets*/ false));
+    return std::to_string(find_escape_count(jumps_, /*variableOffsets*/ false));
 }
 
 auto Day05::calculate_b() -> std::string {
-    return std::to_string(find_escape_count(get_jumps(input_lines()),
-                                            /*variableOffsets*/ true));
+    return std::to_string(find_escape_count(jumps_, /*variableOffsets*/ true));
 }

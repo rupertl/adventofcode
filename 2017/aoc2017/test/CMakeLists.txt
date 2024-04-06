@@ -12,6 +12,7 @@ include(Catch)
 # ---- Tests ----
 
 add_executable(aoc2017_test
+    source/parser_test.cpp
     source/puzzle_data_test.cpp
     source/puzzle_test.cpp
     source/day01_test.cpp

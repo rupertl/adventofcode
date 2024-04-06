@@ -2,7 +2,6 @@
 #include <cstdint>
 #include <iterator>
 #include <map>
-#include <sstream>
 #include <string>
 #include <vector>
 
@@ -40,25 +39,12 @@ auto find_memory_distribution_loop(std::vector<int> banks) -> Loop {
     return Loop{/*detected*/ loopCount, /*length*/ loopCount - states[banks]};
 }
 
-// Convert a string of tab separated values to a vector of int
-auto parse_banks(const std::string &line) {
-    std::vector<int> banks;
-    std::stringstream parser(line);
-    std::string item;
-
-    while (std::getline(parser, item, '\t')) {
-        banks.push_back(std::stoi(item));
-    }
-
-    return banks;
-}
-
 auto Day06::calculate_a() -> std::string {
-    auto loop = find_memory_distribution_loop(parse_banks(input_string()));
+    auto loop = find_memory_distribution_loop(banks_);
     return std::to_string(loop.detected);
 }
 
 auto Day06::calculate_b() -> std::string {
-    auto loop = find_memory_distribution_loop(parse_banks(input_string()));
+    auto loop = find_memory_distribution_loop(banks_);
     return std::to_string(loop.length);
 }
