@@ -17,6 +17,7 @@ include(cmake/variables.cmake)
 
 add_library(
     aoc2017_lib OBJECT
+    source/parser.cpp
     source/puzzle.cpp
     source/puzzle_data.cpp
     source/day01.cpp
@@ -25,6 +26,7 @@ add_library(
     source/day04.cpp
     source/day05.cpp
     source/day06.cpp
+    source/day07.cpp
 )
 
 target_include_directories(

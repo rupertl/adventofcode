@@ -26,3 +26,9 @@ TEST_CASE("Parse grids of strings", "[library]") {
     };
     REQUIRE(parse_matrix<std::string>(input) == expected);
 }
+
+TEST_CASE("Parse line into words", "[library]") {
+    const std::string input{"\tgame, set  & match."};
+    const std::vector<std::string> expected{"game", "set", "match"};
+    REQUIRE(parse_words(input) == expected);
+}
