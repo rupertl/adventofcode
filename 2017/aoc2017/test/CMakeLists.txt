@@ -24,6 +24,7 @@ add_executable(aoc2017_test
     source/day07_test.cpp
     source/day08_test.cpp
     source/day09_test.cpp
+    source/day10_test.cpp
 )
 target_link_libraries(
     aoc2017_test PRIVATE

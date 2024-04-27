@@ -32,3 +32,8 @@ TEST_CASE("Parse line into words", "[library]") {
     const std::vector<std::string> expected{"game", "set", "match"};
     REQUIRE(parse_words(input) == expected);
 }
+
+TEST_CASE("Convert csv to tsv", "[library]") {
+    const std::string input{"42,3,0,1"};
+    REQUIRE(csv_to_tsv(input) == "42\t3\t0\t1");
+}

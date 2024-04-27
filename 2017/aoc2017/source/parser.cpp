@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <regex>
 #include <string>
 #include <vector>
@@ -15,4 +16,12 @@ auto parse_words(const std::string &line) -> std::vector<std::string> {
     }
     
     return words;
+}
+
+auto csv_to_tsv(const std::string &line) -> std::string {
+    std::string out;
+    std::replace_copy(line.begin(), line.end(),
+                      std::back_inserter(out),
+                      ',', '\t');
+    return out;
 }
