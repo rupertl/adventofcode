@@ -1,6 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
-#include "day10.hpp"
+#include "knothash.hpp"
 
 TEST_CASE("Knot hash after twists", "[days]") {
     KnotHash knh{5};            // NOLINT: magic-number
