@@ -14,6 +14,7 @@
 #include "day14.hpp"
 #include "day15.hpp"
 #include "day16.hpp"
+#include "day17.hpp"
 #include "puzzle_data.hpp"
 
 auto main() -> int {
@@ -33,5 +34,6 @@ auto main() -> int {
     Day14(PuzzleData("data/full/14")).run();
     Day15(PuzzleData("data/full/15")).run();
     Day16(PuzzleData("data/full/16")).run();
+    Day17(PuzzleData("data/full/17")).run();
     return 0;
 }
