@@ -19,6 +19,7 @@ add_library(
     aoc2017_lib OBJECT
     source/knothash.cpp
     source/parser.cpp
+    source/point.cpp
     source/puzzle.cpp
     source/puzzle_data.cpp
     source/day01.cpp
@@ -39,6 +40,7 @@ add_library(
     source/day16.cpp
     source/day17.cpp
     source/day18.cpp
+    source/day19.cpp
 )
 
 target_include_directories(
