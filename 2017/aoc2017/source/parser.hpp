@@ -51,6 +51,10 @@ auto parse_matrix(const std::vector<std::string> &lines)
     return mat;
 }
 
+
+auto parse_regex(const std::string &regex, const std::string &line)
+    -> std::vector<std::string>;
+
 // Split a string into words, using the regex \w+ to remove punctuation etc
 auto parse_words(const std::string &line) -> std::vector<std::string>;
 
