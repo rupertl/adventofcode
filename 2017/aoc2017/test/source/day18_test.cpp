@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "day18.hpp"
+#include "duet.hpp"
 
 TEST_CASE("Duet channel", "[days]") {
     DuetChannel dch;

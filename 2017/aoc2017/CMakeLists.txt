@@ -17,6 +17,7 @@ include(cmake/variables.cmake)
 
 add_library(
     aoc2017_lib OBJECT
+    source/duet.cpp
     source/knothash.cpp
     source/parser.cpp
     source/point.cpp
@@ -44,6 +45,7 @@ add_library(
     source/day20.cpp
     source/day21.cpp
     source/day22.cpp
+    source/day23.cpp
 )
 
 target_include_directories(
