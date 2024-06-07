@@ -37,3 +37,14 @@ TEST_CASE("Convert csv to tsv", "[library]") {
     const std::string input{"42,3,0,1"};
     REQUIRE(csv_to_tsv(input) == "42\t3\t0\t1");
 }
+
+TEST_CASE("Parse a regex", "[library]") {
+    const std::string input{"Readings are 3, 12 and 42."};
+    const std::vector<std::string> expected{"3", "12", "42"};
+    REQUIRE(parse_regex(input, "\\d+") == expected);
+}
+
+TEST_CASE("Get word after", "[library]") {
+    const std::string input{"Move to the left, please."};
+    REQUIRE(find_word_after(input, "to the") == "left");
+}

@@ -30,7 +30,7 @@ Particle::Particle(int pid, const std::string &line)
     // p=<1802,2648,674>, v=<262,377,95>, a=<-22,-30,-3>
     // Use a regex to get 9 signed numbers
     const auto * const regex = "[-0-9]+";
-    auto words = parse_regex(regex, line);
+    auto words = parse_regex(line, regex);
     assert(words.size() == 9U);
 
     constexpr std::size_t BASE_P{0U};

@@ -52,7 +52,7 @@ auto parse_matrix(const std::vector<std::string> &lines)
 }
 
 
-auto parse_regex(const std::string &regex, const std::string &line)
+auto parse_regex(const std::string &line, const std::string &regex)
     -> std::vector<std::string>;
 
 // Split a string into words, using the regex \w+ to remove punctuation etc
@@ -60,3 +60,9 @@ auto parse_words(const std::string &line) -> std::vector<std::string>;
 
 // Make a csv line a tsv line for easier parsing
 auto csv_to_tsv(const std::string &line) -> std::string;
+
+// Find the word immediately after search term.
+// eg: find_word_after("Move to the left.", "to the") -> "left"
+// Will throw if no match found.
+auto find_word_after(const std::string &line, const std::string &search)
+    -> std::string;
