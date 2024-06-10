@@ -1,3 +1,5 @@
+#include <string>
+
 #include "day01.hpp"
 #include "day02.hpp"
 #include "day03.hpp"
@@ -25,31 +27,37 @@
 #include "day25.hpp"
 #include "puzzle_data.hpp"
 
+auto get_data(int day) -> PuzzleData {
+    const std::string dir = (day < 10) ? "data/full/0" : "data/full/";
+    return PuzzleData(dir + std::to_string(day));
+}
+
 auto main() -> int {
-    Day01(PuzzleData("data/full/01")).run();
-    Day02(PuzzleData("data/full/02")).run();
-    Day03(PuzzleData("data/full/03")).run();
-    Day04(PuzzleData("data/full/04")).run();
-    Day05(PuzzleData("data/full/05")).run();
-    Day06(PuzzleData("data/full/06")).run();
-    Day07(PuzzleData("data/full/07")).run();
-    Day08(PuzzleData("data/full/08")).run();
-    Day09(PuzzleData("data/full/09")).run();
-    Day10(PuzzleData("data/full/10")).run();
-    Day11(PuzzleData("data/full/11")).run();
-    Day12(PuzzleData("data/full/12")).run();
-    Day13(PuzzleData("data/full/13")).run();
-    Day14(PuzzleData("data/full/14")).run();
-    Day15(PuzzleData("data/full/15")).run();
-    Day16(PuzzleData("data/full/16")).run();
-    Day17(PuzzleData("data/full/17")).run();
-    Day18(PuzzleData("data/full/18")).run();
-    Day19(PuzzleData("data/full/19")).run();
-    Day20(PuzzleData("data/full/20")).run();
-    Day21(PuzzleData("data/full/21")).run();
-    Day22(PuzzleData("data/full/22")).run();
-    Day23(PuzzleData("data/full/23")).run();
-    Day24(PuzzleData("data/full/24")).run();
-    Day25(PuzzleData("data/full/25")).run();
+    int day = 1;
+    Day01(get_data(day++)).run();
+    Day02(get_data(day++)).run();
+    Day03(get_data(day++)).run();
+    Day04(get_data(day++)).run();
+    Day05(get_data(day++)).run();
+    Day06(get_data(day++)).run();
+    Day07(get_data(day++)).run();
+    Day08(get_data(day++)).run();
+    Day09(get_data(day++)).run();
+    Day10(get_data(day++)).run();
+    Day11(get_data(day++)).run();
+    Day12(get_data(day++)).run();
+    Day13(get_data(day++)).run();
+    Day14(get_data(day++)).run();
+    Day15(get_data(day++)).run();
+    Day16(get_data(day++)).run();
+    Day17(get_data(day++)).run();
+    Day18(get_data(day++)).run();
+    Day19(get_data(day++)).run();
+    Day20(get_data(day++)).run();
+    Day21(get_data(day++)).run();
+    Day22(get_data(day++)).run();
+    Day23(get_data(day++)).run();
+    Day24(get_data(day++)).run();
+    Day25(get_data(day++)).run();
     return 0;
 }
